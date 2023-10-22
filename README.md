@@ -1,1 +1,1 @@
-# Secure-Coding-with-OWASP-in-ASP.NET-Core-8
+# Secure-Coding-with-ASP.NET-Core
