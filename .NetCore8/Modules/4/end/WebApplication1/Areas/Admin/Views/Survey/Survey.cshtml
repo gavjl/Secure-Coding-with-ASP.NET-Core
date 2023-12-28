@@ -1,0 +1,38 @@
+﻿@model Globomantics.Survey.Models.CustomerSurvey
+
+@{
+    ViewData["Title"] = "Survey";
+}
+
+<h1>Survey: @Model.Title</h1>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Question</th>
+      <th scope="col">Possible Answers</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (SurveyQuestion question in Model.Questions)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => question.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(model => question.Question)
+            </td>
+            <td>
+                @Html.DisplayFor(model => question.PossibleAnswers)
+            </td>
+        </tr>
+    }
+
+  </tbody>
+</table>
+
+<b>Message on completion :</b>
+@Html.DisplayFor(model => model.SurveyCompleteMessage)

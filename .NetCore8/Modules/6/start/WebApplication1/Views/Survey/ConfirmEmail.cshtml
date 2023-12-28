@@ -1,0 +1,23 @@
+﻿@model Globomantics.Survey.Models.CustomerSurvey
+
+@{
+    Layout= "_Layout";
+}
+
+<form asp-action="Step1" asp-route-id="@Model.Id" method="post" role="form">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div>
+        <h1>@Html.DisplayFor(model => model.Title)</h1>
+        <hr />
+        
+        Please confirm your email address to continue:
+        <input autocomplete="email" aria-required="true" type="email" data-val="true" id="Email" name="EMail" value="">
+
+        <div style="margin: auto;width: 50%;padding: 10px; text-align:center">
+            <input type="submit" value="Submit Email"/>
+        </div>
+    
+
+    </div>
+
+</form>

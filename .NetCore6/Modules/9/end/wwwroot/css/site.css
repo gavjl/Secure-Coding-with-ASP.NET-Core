@@ -1,0 +1,41 @@
+html {
+  font-size: 16px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 26px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.text {
+    color: black;
+    font-size: 14px;
+    font-style: italic;
+    padding-left: 14px;
+}
+
+.popup {
+  visibility:hidden;
+}
+  
+.popup-body {
+  visibility:hidden;
+}
+
+.popup.active{
+  visibility:visible;
+}
+  
+.popup-body.active {
+  visibility:visible;
+}

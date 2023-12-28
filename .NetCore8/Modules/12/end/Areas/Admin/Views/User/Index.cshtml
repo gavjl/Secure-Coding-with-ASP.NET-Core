@@ -1,0 +1,37 @@
+﻿@using Globomantics.Survey.Areas.Identity.Data
+@using Microsoft.AspNetCore.Identity
+@model List<GloboSurveyUser>;
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>All Users:</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">User</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    @foreach (GloboSurveyUser user in Model)
+    {
+        <tr>
+            <td>
+            <a class="nav-link text-dark" href="/admin/ViewUser/@user.Id">
+                @Html.DisplayFor(model => user.Email)
+            </a>          
+            </td>
+        </tr>
+    }
+
+  </tbody>
+</table>
+   
+
+
+</div>
+
+

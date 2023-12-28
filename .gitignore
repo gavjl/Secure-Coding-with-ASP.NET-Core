@@ -1,0 +1,14 @@
+*.cache
+*.dll
+*.exe
+*.pdb
+/**/.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+x64/
+x86/
+bld/
+**/bin/
+**/obj/

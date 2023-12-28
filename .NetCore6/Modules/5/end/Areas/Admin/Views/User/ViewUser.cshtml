@@ -1,0 +1,55 @@
+﻿@using Globomantics.Survey.Areas.Admin.ViewModels
+@model UserDetailsViewModel;
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>User Details:</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+
+      <tr>
+          <td>
+          <a >
+              @Html.DisplayFor(model => Model.User.Email)
+          </a>          
+          </td>
+          <td>
+
+          @if ((await AuthorizationService.AuthorizeAsync(User, "SuperAdmin")).Succeeded)
+          {
+            @if (Model.IsAdmin)
+            {
+              <b>Is Admin User</b>
+              <form asp-controller="User" asp-action="UnsetAdmin" asp-route-id="@Model.User.Id" method="post">
+                  <input type="hidden" name="guid" value="@Model.User.Id" />
+                  <button type="submit">Remove Admin</button>
+              </form>
+            }
+            else
+            {
+              <form asp-controller="User" asp-action="SetAdmin" asp-route-id="@Model.User.Id" method="post">
+                  <input type="hidden" name="guid" value="@Model.User.Id" />
+                  <button type="submit">Set To Admin</button>
+              </form>
+            }
+          }
+          </td>
+      </tr>
+
+  </tbody>
+</table>
+   
+
+
+</div>
+
+

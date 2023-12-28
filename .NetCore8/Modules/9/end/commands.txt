@@ -1,0 +1,28 @@
+dotnet nuget verify --all -v normal newtonsoft.json.13.0.3.nupkg
+dotnet nuget verify --all -v normal **\*.nupkg
+
+
+
+//Create a signing cert
+New-SelfSignedCertificate -Subject "CN=GavinJL, OU=GavinJL testing ONLY" `
+                          -FriendlyName "GavinJL" `
+                          -Type CodeSigning `
+                          -KeyUsage DigitalSignature `
+                          -KeyLength 2048 `
+                          -KeyAlgorithm RSA `
+                          -HashAlgorithm SHA256 `
+                          -Provider "Microsoft Enhanced RSA and AES Cryptographic Provider" `
+                          -CertStoreLocation "Cert:\CurrentUser\My" 
+
+//Sign .nupkg
+dotnet nuget sign --certificate-fingerprint 1DAB4D4D60CB5999291EECB4B0E33BA6512D4D31 "C:\ps-nuget\GavinJLTest.1.0.0.nupkg" --output "C:\ps-nuget\signed"
+
+dotnet nuget verify --all -v normal  "C:\ps-nuget\GavinJLTest.nupkg"
+
+dotnet list package
+dotnet list package --vulnerable
+dotnet list package --include-transitive
+dotnet list package --vulnerable --include-transitive
+dotnet restore
+
+<PackageReference Include="NuGet.Common" Version="6.3.1" />

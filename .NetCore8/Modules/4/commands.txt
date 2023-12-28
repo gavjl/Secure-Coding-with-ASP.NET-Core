@@ -1,0 +1,1 @@
+dotnet aspnet-codegenerator identity -dc Globomantics.Survey.Data.IdentityDbContext --files "Account.LoginWith2fa" --databaseProvider sqlite

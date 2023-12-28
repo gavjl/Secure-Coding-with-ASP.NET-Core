@@ -1,0 +1,18 @@
+﻿
+<form method="post" enctype="multipart/form-data" asp-controller="Avatar">
+
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        <div>
+            <p>Please state a URL for your avatar:</p>
+            <input type="text" size="100" name="fileUrl" />
+        </div>
+    </div>
+    <br><br>
+    <div class="form-group">
+        <div>
+            <input type="submit" value="Get File" class="btn btn-lg btn-primary" />
+        </div>
+    </div>
+</form>

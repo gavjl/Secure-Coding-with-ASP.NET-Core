@@ -1,0 +1,3 @@
+docker run -d --publish 3310:3310 clamav/clamav:latest
+
+dotnet add package nClam

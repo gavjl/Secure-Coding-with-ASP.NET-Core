@@ -1,0 +1,54 @@
+﻿@model Globomantics.Survey.Models.CustomerSurvey
+
+@{
+    Layout= "_Layout";
+}
+
+<form asp-action="CompleteSurvey" asp-route-id="@Model.Id" method="post" role="form">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div>
+        <h1>@Html.DisplayFor(model => model.Title)</h1>
+        <hr />
+
+        @for (int i = 0; i < Model.Questions.Count; i++)
+        {
+            <dl class="row">
+                <dd class = "col-sm-10">
+                    @Html.DisplayFor(model => Model.Questions[i].Question)
+                    @Html.HiddenFor(model => Model.Questions[i].Id)
+                    @Html.HiddenFor(model => Model.Questions[i].Question)
+                </dd>
+            </dl>
+
+
+            <dl class="row">
+                <dt class = "col-sm-2">
+                    
+                </dt>
+                <dd class = "col-sm-10">
+                @if (Model.Questions[i].PossibleAnswers != "")
+                {
+                    string[] answers = Model.Questions[i].PossibleAnswers.Split('|');
+                    @foreach (var answer in answers)
+                    {
+                        <input type="radio" id="@Html.IdFor(model => Model.Questions[i].Answer)" name="@Html.NameFor(model => Model.Questions[i].Answer)" value="@answer" /> @answer
+                        <br />
+                    }
+                }
+                else
+                {
+                    @Html.TextAreaFor(model => Model.Questions[i].Answer, new { style="width:500px;" })
+                }
+                </dd>
+                <hr />
+            </dl>
+   
+        }
+        <div style="margin: auto;width: 50%;padding: 10px; text-align:center">
+            <input type="submit" value="Submit Answers"/>
+        </div>
+    
+
+    </div>
+
+</form>

@@ -1,0 +1,67 @@
+﻿@using Globomantics.Survey.Areas.Admin.ViewModels
+@model UserDetailsViewModel;
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>User Details:</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+
+      <tr>
+          <td>
+          <a >
+              @Html.DisplayFor(model => Model.User.Email)
+          </a>          
+          </td>
+          <td>
+
+          @if ((await AuthorizationService.AuthorizeAsync(User, "SuperAdmin")).Succeeded)
+          {
+            @if (Model.IsAdmin)
+            {
+              <b>Is Admin User</b>
+              <form asp-controller="User" asp-action="UnsetAdmin" asp-route-id="@Model.User.Id" method="post">
+                  <input type="hidden" name="guid" value="@Model.User.Id" />
+                  <button type="submit">Remove Admin</button>
+              </form>
+            }
+            else
+            {
+              <form asp-controller="User" asp-action="SetAdmin" asp-route-id="@Model.User.Id" method="post">
+                  <input type="hidden" name="guid" value="@Model.User.Id" />
+                  <button type="submit">Set To Admin</button>
+              </form>
+            }
+          }
+          </td>
+          <td>
+              <button class="popup-open">Send Message</button>
+          </td>
+      </tr>
+
+  </tbody>
+</table>
+   
+<div class="popup">
+ <div class="popup-body">
+    <h2>Send Message</h2>
+        <form asp-controller="User" asp-action="SendEmail" asp-route-id="@Model.User.Id" method="get">
+            <input type="hidden" name="guid" value="@Model.User.Id" />
+            <input type="text" name="message" size="100">
+            <button type="submit">Send email</button>
+        </form>
+    <button class="popup-close">Close</button>    
+  </div>
+</div>
+</div>
+
+

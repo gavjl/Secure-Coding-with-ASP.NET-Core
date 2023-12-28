@@ -1,0 +1,32 @@
+﻿@model Guid
+
+@{
+    Layout= "_Layout";
+}
+
+<form asp-action="RangeSurvey" asp-route-id="@Model" method="post" role="form">
+    
+    <div>
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+        <hr />
+            How do you rate this from bad (1) to good (10)?
+            <input type="range" oninput="document.getElementById('rangeView').innerText = document.getElementById('RangeValue').value"
+                id="RangeValue" name="RangeValue" 
+                min="1" 
+                max="10">
+                <b id="rangeView">6</b> 
+            <br><br>
+            If your score is less than 5, please tell us why:
+            <input type="text" id="Comment" name="Comment" size="100">
+
+            <input type="hidden" id="SurveyId" name="SurveyId" value="@Model">
+
+        <div style="margin: auto;width: 50%;padding: 10px; text-align:center">
+            <input type="submit" value="Submit Response"/>
+        </div>
+    
+
+    </div>
+
+</form>

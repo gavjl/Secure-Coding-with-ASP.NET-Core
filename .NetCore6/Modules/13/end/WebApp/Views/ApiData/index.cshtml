@@ -1,0 +1,31 @@
+@model GlobomanticsApi.Models.LoginModel
+
+<h1>@ViewData["Title"]</h1>
+<div class="row">
+    <div class="col-md-4">
+        <section>
+
+            <form id="apiLoginForm">
+                <h2>API login</h2>
+                <hr />
+                <div class="form-floating">
+                    <input class="form-control" value="Admin@globomantics.com" type="email" id="Email" name="Email">
+                    <label class="form-label" for="Email">Email</label>
+                </div>
+                <div class="form-floating">
+                    <input class="form-control valid" value="Admin@globomantics.com" type="password" id="Password" name="Password">
+                    <label class="form-label" for="Password">Password</label>
+                </div>
+                <div>
+                    <button type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                </div>
+            </form>
+
+        </section>
+    </div>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

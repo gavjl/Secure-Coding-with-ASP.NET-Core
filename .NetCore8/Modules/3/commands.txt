@@ -1,0 +1,27 @@
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet tool install -g dotnet-aspnet-codegenerator
+dotnet add package Microsoft.DotNet.Scaffolding.Shared
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore
+dotnet add package Microsoft.AspNetCore.Identity.UI
+dotnet add package Microsoft.EntityFrameworkCore.Sqlite
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+
+
+dotnet aspnet-codegenerator identity --listFiles --no-build
+
+dotnet aspnet-codegenerator identity -dc Globomantics.Survey.Data.IdentityDbContext --files "Account.Register;Account.Login;Account.Logout" --databaseProvider sqlite
+
+
+dotnet tool install --global dotnet-ef --version 8.0.0-rc.2.23480.1
+dotnet-ef migrations add Identity --context IdentityDbContext
+dotnet-ef database update --context IdentityDbContext
+
+
+dotnet aspnet-codegenerator identity -dc Globomantics.Survey.Data.IdentityDbContext --files "Account.RegisterConfirmation" --databaseProvider sqlite
+
+dotnet aspnet-codegenerator identity -dc Globomantics.Survey.Data.IdentityDbContext --files "Account.ResetPassword;Account.ResetPasswordConfirmation" --databaseProvider sqlite
+
+
+dotnet aspnet-codegenerator identity -dc Globomantics.Survey.Data.IdentityDbContext --files "Account.Manage.Disable2fa;Account.Manage.TwoFactorAuthentication;Account.Manage.EnableAuthenticator" --databaseProvider sqlite

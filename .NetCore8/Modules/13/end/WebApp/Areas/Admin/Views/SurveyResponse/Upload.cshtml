@@ -1,0 +1,16 @@
+﻿@model Globomantics.Survey.Areas.Admin.ViewModels.SurveyResponseViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Upload Survey Responses</h1>
+
+<form asp-controller="SurveyResponse" asp-action="Upload" method="post">
+    <textarea name="xmlContent" cols="70" rows="5"></textarea>
+    <button type="submit">Upload</button>
+</form>
+
+</div>
+
+
